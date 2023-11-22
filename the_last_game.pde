@@ -6,8 +6,8 @@ int Baring = 1;
 int Farming = 4;
 int Topping = 5;
 
-
 int page = Starting; 
+barbuilding bb = new barbuilding();
 
 player ool; 
 
@@ -26,28 +26,28 @@ void draw() {
   } 
   if (page == Outing) {
 
-    barbuilding bb = new barbuilding();
+
     bb.building();
    
     fill(0);
     ool.body(); 
 
-    if (ool.X < -200 || ool.X > width-100) {
+    if (ool.X < -40 || ool.X > width) {
       page = Ending;
     }
   } 
   
   if(page == Baring){
-        fill(0);
+        fill(200,20,21);
     ool.body(); 
   }
   if(page == Farming){
-     fill(0);
+     fill(225);
     ool.body(); 
   }
   
   if(page == Topping){
-        fill(0);
+        fill(100);
     ool.body(); 
   }
   
@@ -64,8 +64,10 @@ void keyPressed() {
   }
   else if (page == Ending && key=='e' || key== 'E') {
     page = Starting; 
+    ool = new player(); 
   }
    else if(page == Baring && ool.X >= 380 && key == 'e' || key == 'E'){
+    ool = new player();
     page = Outing;
   }
   
@@ -91,13 +93,13 @@ void keyPressed() {
   
   
   
-  if (page == Outing || page == Baring) {
+  if (page == Outing || page == Baring || page == Topping || page == Farming) {
     ool.keyPressed();
   }
 }
 
 void keyReleased() {
-  if (page == Outing || page == Baring ) {
+  if (page == Outing || page == Baring || page == Topping || page == Farming) {
     ool.keyReleased(); 
   }
 }
@@ -119,14 +121,14 @@ void Endining() {
 }
 
 class player {
-  float X = 30;
+  float X = 190;
   float Speed = 5;
   boolean goleft;
   boolean goright;
   boolean e;
 
   void body() {
-    rect(X + 160, 320, 20, 20); 
+    rect(X , 320, 20, 20); 
 
     if (goright) {
       X += Speed;
